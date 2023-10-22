@@ -1,0 +1,11 @@
+@import "../../styles/variables";
+
+
+#nacionais,
+#internacionais {
+  max-width: 1116px !important;
+}
+
+.card {
+  @include card();
+}

@@ -10,12 +10,19 @@ import connection.ConnectionFactory;
 import model.Destino;
 
 public class DestinoDAO {
-	public static void cadastrar(Destino destino) {
-		String sql = "INSERT INTO destino(nome, valor, estado, pais) VALUES(?,?,?,?)";
+	public static void save(Destino destino) {
+		String sql;
 		Connection con = null;
 		PreparedStatement pstm = null;
 		
 		try {
+		
+			sql = destino.getId() == 0 ?
+					"INSERT INTO destino(nome, valor, estado, pais) VALUES(?,?,?,?)"
+				:
+					"UPDATE destino SET nome = ?, estado = ?, pais = ?, valor = ? WHERE idDestino = ?"
+				;
+		
 			con = ConnectionFactory.createConnection();
 			pstm = con.prepareStatement(sql);
 			
@@ -23,6 +30,10 @@ public class DestinoDAO {
 			pstm.setFloat(2, destino.getValor());
 			pstm.setString(3,destino.getEstado());
 			pstm.setString(4, destino.getPais());
+			
+			if(destino.getId() != 0) {
+				pstm.setInt(5, destino.getId());
+			}
 			
 			pstm.execute();
 			System.out.println("Destino cadastrado com sucesso!!!");
@@ -124,41 +135,6 @@ public class DestinoDAO {
 			
 		}
 		return destino;
-	}
-	
-	public static void atualizar(Destino destino) {
-		String sql = "UPDATE destino SET nome = ?, estado = ?, pais = ?, valor = ?" + "WHERE idDestino = ?";
-		Connection con = null;
-		PreparedStatement pstm = null;
-		
-		try {
-			con = ConnectionFactory.createConnection();
-			pstm = con.prepareStatement(sql);
-			
-			pstm.setString(1, destino.getNome());
-			pstm.setString(2, destino.getEstado());
-			pstm.setString(3, destino.getPais());
-			pstm.setFloat(4, destino.getValor());
-			pstm.setInt(5, destino.getId());
-			
-			pstm.execute();
-			
-			System.out.println("Registro alterado com sucesso!!!");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(pstm != null) {
-					pstm.close();
-				}
-				if(con != null) {
-					con.close();
-				}
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 	}
 	
 	public static void removerPorId(int id) {

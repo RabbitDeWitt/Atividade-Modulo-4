@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap");
+#nacionais,
+#internacionais {
+  max-width: 1116px !important;
+}
+
+.card {
+  background-color: hsla(212, 100%, 5%, 0.75);
+  color: #fff;
+}
+.card h5 {
+  text-align: center;
+}
+.card li {
+  background-color: hsl(198, 47%, 79%);
+}
+.card li p:nth-of-type(1) {
+  color: hsl(211, 57%, 7%) !important;
+}
+.card li p:nth-of-type(2) {
+  color: hsla(212, 100%, 5%, 0.75) !important;
+}/*# sourceMappingURL=destinos.css.map */

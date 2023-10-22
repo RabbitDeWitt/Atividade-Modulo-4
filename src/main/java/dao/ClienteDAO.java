@@ -11,12 +11,20 @@ import connection.ConnectionFactory;
 import model.Cliente;
 
 public class ClienteDAO {
-	public static void cadastrar(Cliente cliente) {
-		String sql = "INSERT INTO cliente(nome, dataNasc, telefone, numPassaporte) VALUES(?,?,?,?)";
+	public static void save(Cliente cliente) {
+		String sql;
+		
 		Connection con = null;
 		PreparedStatement pstm = null;
 		
 		try {
+			
+			sql = cliente.getId() == 0 ? 
+				"INSERT INTO cliente(nome, dataNasc, telefone, numPassaporte) VALUES(?,?,?,?)"
+			:
+				"UPDATE cliente SET nome = ?, dataNasc = ?, telefone = ?, numPassaporte = ? WHERE idCliente = ?"				
+			;
+			
 			con = ConnectionFactory.createConnection();
 			pstm = con.prepareStatement(sql);
 			
@@ -25,8 +33,11 @@ public class ClienteDAO {
 			pstm.setString(3,cliente.getTelefone());
 			pstm.setString(4, cliente.getNumPassaporte());
 			
+			if(cliente.getId() != 0) {
+				pstm.setInt(5, cliente.getId());
+			}
+			
 			pstm.execute();
-			System.out.println("Cliente cadastrado com sucesso!!!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -41,6 +52,8 @@ public class ClienteDAO {
 				e.printStackTrace();
 			}
 		}
+		
+		
 	}
 	
 	public static void listarCliente(){
@@ -130,40 +143,40 @@ public class ClienteDAO {
 	}
 	
 	
-	public static void atualizar(Cliente cliente) {
-		String sql = "UPDATE cliente SET nome = ?, dataNasc = ?, telefone = ?, numPassaporte = ?" + "WHERE idCliente = ?";
-		Connection con = null;
-		PreparedStatement pstm = null;
-		
-		try {
-			con = ConnectionFactory.createConnection();
-			pstm = con.prepareStatement(sql);
-			
-			pstm.setString(1, cliente.getNome());
-			pstm.setDate(2, new Date(cliente.getDataNasc().getTime()));
-			pstm.setString(3, cliente.getTelefone());
-			pstm.setString(4, cliente.getNumPassaporte());
-			pstm.setInt(5, cliente.getId());
-			
-			pstm.execute();
-			
-			System.out.println("Registro alterado com sucesso!!!");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(pstm != null) {
-					pstm.close();
-				}
-				if(con != null) {
-					con.close();
-				}
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
+//	public static void atualizar(Cliente cliente) {
+//		String sql = "UPDATE cliente SET nome = ?, dataNasc = ?, telefone = ?, numPassaporte = ?" + "WHERE idCliente = ?";
+//		Connection con = null;
+//		PreparedStatement pstm = null;
+//		
+//		try {
+//			con = ConnectionFactory.createConnection();
+//			pstm = con.prepareStatement(sql);
+//			
+//			pstm.setString(1, cliente.getNome());
+//			pstm.setDate(2, new Date(cliente.getDataNasc().getTime()));
+//			pstm.setString(3, cliente.getTelefone());
+//			pstm.setString(4, cliente.getNumPassaporte());
+//			pstm.setInt(5, cliente.getId());
+//			
+//			pstm.execute();
+//			
+//			System.out.println("Registro alterado com sucesso!!!");
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			try {
+//				if(pstm != null) {
+//					pstm.close();
+//				}
+//				if(con != null) {
+//					con.close();
+//				}
+//			}catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 	
 	public static void removerPorId(int id) {
 		String sql = "DELETE FROM cliente WHERE IdCliente = ?";

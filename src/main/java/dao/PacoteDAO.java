@@ -10,18 +10,28 @@ import connection.ConnectionFactory;
 import model.Pacote;
 
 public class PacoteDAO {
-	public static void cadastrar(Pacote pacote) {
-		String sql = "INSERT INTO Pacote(nome, valorPacote) VALUES(?,?)";
+	public static void save(Pacote pacote) {
+		String sql;
+		
 		Connection con = null;
 		PreparedStatement pstm = null;
-		
 		try {
+
+			sql = pacote.getId() == 0 ?
+				"INSERT INTO Pacote(nome, valorPacote) VALUES(?,?)"
+			:
+				 "UPDATE Pacote SET nome = ?, valorPacote = ? WHERE idPacote = ?"
+			;
+		
 			con = ConnectionFactory.createConnection();
 			pstm = con.prepareStatement(sql);
 			
 			pstm.setString(1, pacote.getNome());
 			pstm.setFloat(2, pacote.getValor());
 			
+			if(pacote.getId() != 0) {
+				pstm.setInt(3, pacote.getId());
+			}
 			
 			pstm.execute();
 			System.out.println("Pacote cadastrado com sucesso!!!");
@@ -121,38 +131,6 @@ public class PacoteDAO {
 		return pacote;
 	}
 	
-	public static void atualizar(Pacote pacote) {
-		String sql = "UPDATE Pacote SET nome = ?, valorPacote = ?" + "WHERE idPacote = ?";
-		Connection con = null;
-		PreparedStatement pstm = null;
-		
-		try {
-			con = ConnectionFactory.createConnection();
-			pstm = con.prepareStatement(sql);
-			
-			pstm.setString(1, pacote.getNome());
-			pstm.setFloat(2, pacote.getValor());
-			pstm.setInt(3, pacote.getId());
-			
-			pstm.execute();
-			
-			System.out.println("Registro alterado com sucesso!!!");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(pstm != null) {
-					pstm.close();
-				}
-				if(con != null) {
-					con.close();
-				}
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
 	
 	public static void removerPorId(int id) {
 		String sql = "DELETE FROM Pacote WHERE idPacote = ?";

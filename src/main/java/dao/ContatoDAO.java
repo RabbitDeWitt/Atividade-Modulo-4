@@ -10,8 +10,14 @@ import connection.ConnectionFactory;
 import model.Contato;
 
 public class ContatoDAO {
-	public static void cadastrar(Contato contato) {
-		String sql = "INSERT INTO contato(nome, email, mensagem) VALUES(?,?,?)";
+	public static void save(Contato contato) {
+		String sql;
+		sql = contato.getId() == 0 ?
+			"INSERT INTO contato(nome, email, mensagem) VALUES(?,?,?)"
+				:
+			"UPDATE contato SET nome = ?, email = ?, mensagem = ? WHERE idContato = ?"
+		;
+				
 		Connection con = null;
 		PreparedStatement pstm = null;
 		
@@ -22,6 +28,10 @@ public class ContatoDAO {
 			pstm.setString(1, contato.getNome());
 			pstm.setString(2, contato.getEmail());
 			pstm.setString(3, contato.getMensagem());
+			
+			if(contato.getId() != 0) {
+				pstm.setInt(4, contato.getId());
+			}
 			
 			pstm.execute();
 			System.out.println("Mensagem cadastrada com sucesso!!!");
