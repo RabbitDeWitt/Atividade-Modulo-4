@@ -66,7 +66,7 @@ public class ReservaDAO {
 				int idPacote = rset.getInt("idPacote");
 
 				reserva.setId(rset.getInt("idReserva"));
-				reserva.setCliente(ClienteDAO.consultarCliente(idCliente));
+				reserva.setCliente(ClienteDAO.readById(idCliente));
 				reserva.setDestino(DestinoDAO.consultarDestino(idDestino));
 				reserva.setPacote(PacoteDAO.consultarPacote(idPacote));
 				reserva.setDataPartida(rset.getDate("dataPartida"));
@@ -116,7 +116,7 @@ public class ReservaDAO {
 				int idPacote = rset.getInt("idPacote");
 				
 				reserva.setId(rset.getInt("idReserva"));
-				reserva.setCliente(ClienteDAO.consultarCliente(idCliente));
+				reserva.setCliente(ClienteDAO.readById(idCliente));
 				reserva.setDestino(DestinoDAO.consultarDestino(idDestino));
 				reserva.setPacote(PacoteDAO.consultarPacote(idPacote));
 				reserva.setDataPartida(rset.getDate("dataPartida"));

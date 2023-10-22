@@ -56,7 +56,7 @@ public class ClienteDAO {
 		
 	}
 	
-	public static void listarCliente(){
+	public static List<Cliente> read(){
 		String sql = "SELECT * FROM Cliente";
 		List<Cliente> clientes = new ArrayList<>();
 		
@@ -95,12 +95,10 @@ public class ClienteDAO {
 				e.printStackTrace();
 			}
 		}
-		for(Cliente cliente : clientes) {
-			cliente.mostrar();
-		}
+		return clientes;
 	}
 	
-	public static Cliente consultarCliente(int id) {
+	public static Cliente readById(int id) {
 		String sql = "select * from cliente WHERE idCliente = ?";
 	
 		Connection con = null;
@@ -178,7 +176,7 @@ public class ClienteDAO {
 //		}
 //	}
 	
-	public static void removerPorId(int id) {
+	public static void deleteById(int id) {
 		String sql = "DELETE FROM cliente WHERE IdCliente = ?";
 		
 		Connection con = null;
