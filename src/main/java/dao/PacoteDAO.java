@@ -51,7 +51,7 @@ public class PacoteDAO {
 		}
 	}
 	
-	public static void listarPacote(){
+	public static List<Pacote> read(){
 		String sql = "SELECT * FROM Pacote";
 		List<Pacote> pacotes = new ArrayList<>();
 		
@@ -88,12 +88,10 @@ public class PacoteDAO {
 				e.printStackTrace();
 			}
 		}
-		for (Pacote pacote : pacotes) {
-			pacote.mostrar();
-		}
+		return pacotes;
 	}
 	
-	public static Pacote consultarPacote(int id) {
+	public static Pacote readById(int id) {
 		String sql = "select * from pacote WHERE idPacote = ?";
 
 		Pacote pacote = new Pacote();
@@ -132,7 +130,7 @@ public class PacoteDAO {
 	}
 	
 	
-	public static void removerPorId(int id) {
+	public static void deleteById(int id) {
 		String sql = "DELETE FROM Pacote WHERE idPacote = ?";
 		
 		Connection con = null;

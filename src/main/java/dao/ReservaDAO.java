@@ -11,12 +11,19 @@ import connection.ConnectionFactory;
 import model.Reserva;
 
 public class ReservaDAO {
-	public static void cadastrar(Reserva reserva) {
-		String sql = "INSERT INTO Reserva(idCliente, idDestino, idPacote, dataPartida, dataRetorno, valorTotal)" + "VALUES(?,?,?,?,?,?)";
+	public static void save(Reserva reserva) {
+		String sql;
+		
 		Connection con = null;
 		PreparedStatement pstm = null;
 		
 		try {
+		sql = reserva.getId() == 0 ?
+					"INSERT INTO Reserva(idCliente, idDestino, idPacote, dataPartida, dataRetorno, valorTotal) VALUES(?,?,?,?,?,?)"
+				:
+					"UPDATE reserva SET idCliente = ?, idDestino = ?, idPacote = ?, dataPartida = ?, dataRetorno = ?, valorTotal = ? WHERE idReserva = ?"
+				;
+		
 			con = ConnectionFactory.createConnection();
 			pstm = con.prepareStatement(sql);
 			
@@ -27,6 +34,9 @@ public class ReservaDAO {
 			pstm.setDate(5, new Date(reserva.getDataRetorno().getTime()));
 			pstm.setFloat(6, reserva.getValorTotal());
 			
+			if(reserva.getId() != 0) {
+				pstm.setInt(7, reserva.getId());
+			}
 			
 			pstm.execute();
 			System.out.println("Reserva cadastrada com sucesso!!!");
@@ -46,9 +56,9 @@ public class ReservaDAO {
 		}
 	}
 	
-	public static void listarReserva(){
+	public static List<Reserva> read(){
 		String sql = "SELECT * FROM Reserva";
-		List<Reserva> Reservas = new ArrayList<Reserva>();
+		List<Reserva> reservas = new ArrayList<Reserva>();
 		
 		Connection con = null;
 		PreparedStatement pstm = null;
@@ -67,13 +77,13 @@ public class ReservaDAO {
 
 				reserva.setId(rset.getInt("idReserva"));
 				reserva.setCliente(ClienteDAO.readById(idCliente));
-				reserva.setDestino(DestinoDAO.consultarDestino(idDestino));
-				reserva.setPacote(PacoteDAO.consultarPacote(idPacote));
+				reserva.setDestino(DestinoDAO.readById(idDestino));
+				reserva.setPacote(PacoteDAO.readById(idPacote));
 				reserva.setDataPartida(rset.getDate("dataPartida"));
 				reserva.setDataRetorno(rset.getDate("dataRetorno"));
 				reserva.setValorTotal(rset.getFloat("valorTotal"));
 				
-				Reservas.add(reserva);
+				reservas.add(reserva);
 			}
 			
 			
@@ -91,12 +101,10 @@ public class ReservaDAO {
 				e.printStackTrace();
 			}
 		}
-		for (Reserva reserva : Reservas) {
-			reserva.mostrar();
-		}
+		return reservas;
 	}
 	
-	public static Reserva consultarReserva(int id) {
+	public static Reserva readById(int id) {
 		String sql = "select * from reserva WHERE idReserva = ?";
 
 		Reserva reserva = new Reserva();
@@ -117,14 +125,12 @@ public class ReservaDAO {
 				
 				reserva.setId(rset.getInt("idReserva"));
 				reserva.setCliente(ClienteDAO.readById(idCliente));
-				reserva.setDestino(DestinoDAO.consultarDestino(idDestino));
-				reserva.setPacote(PacoteDAO.consultarPacote(idPacote));
+				reserva.setDestino(DestinoDAO.readById(idDestino));
+				reserva.setPacote(PacoteDAO.readById(idPacote));
 				reserva.setDataPartida(rset.getDate("dataPartida"));
 				reserva.setDataRetorno(rset.getDate("dataRetorno"));
 				reserva.setValorTotal(rset.getFloat("valorTotal"));				
 			}
-			
-				
 			
 		} catch (Exception e) {
 			System.out.println("Reserva nao encontrada.");
@@ -146,44 +152,7 @@ public class ReservaDAO {
 		return reserva;
 	}
 	
-	public static void atualizar(Reserva reserva) {
-		String sql = "UPDATE reserva SET idCliente = ?, idDestino = ?, idPacote = ?, dataPartida = ?, dataRetorno = ?, valorTotal = ? " + "WHERE idReserva = ?";
-		Connection con = null;
-		PreparedStatement pstm = null;
-		
-		try {
-			con = ConnectionFactory.createConnection();
-			pstm = con.prepareStatement(sql);
-			
-			pstm.setInt(1, reserva.getCliente().getId());
-			pstm.setInt(2, reserva.getDestino().getId());
-			pstm.setInt(3, reserva.getPacote().getId());
-			pstm.setDate(4, new Date(reserva.getDataPartida().getTime()));
-			pstm.setDate(5, new Date(reserva.getDataRetorno().getTime()));
-			pstm.setFloat(6, reserva.getValorTotal());
-			pstm.setInt(7, reserva.getId());
-			
-			pstm.execute();
-			
-			System.out.println("Registro alterado com sucesso!!!");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(pstm != null) {
-					pstm.close();
-				}
-				if(con != null) {
-					con.close();
-				}
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	public static void removerPorId(int id) {
+	public static void deleteById(int id) {
 		String sql = "DELETE FROM reserva WHERE idReserva = ?";
 		
 		Connection con = null;

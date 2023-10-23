@@ -53,7 +53,7 @@ public class DestinoDAO {
 		}
 	}
 	
-	public static void listarDestino(){
+	public static List<Destino> read(){
 		String sql = "SELECT * FROM destino";
 		List<Destino> destinos = new ArrayList<>();
 		
@@ -92,12 +92,10 @@ public class DestinoDAO {
 				e.printStackTrace();
 			}
 		}
-		for(Destino destino : destinos) {
-			destino.mostrar();
-		}
+		return destinos;
 	}
 	
-	public static Destino consultarDestino(int id) {
+	public static Destino readById(int id) {
 		String sql = "select * from destino WHERE idDestino = ?";
 
 		Destino destino = new Destino();
@@ -137,7 +135,7 @@ public class DestinoDAO {
 		return destino;
 	}
 	
-	public static void removerPorId(int id) {
+	public static void deleteById(int id) {
 		String sql = "DELETE FROM destino WHERE idDestino = ?";
 		
 		Connection con = null;

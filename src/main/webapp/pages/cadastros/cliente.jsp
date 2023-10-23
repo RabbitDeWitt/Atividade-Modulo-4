@@ -15,82 +15,100 @@
 </head>
 <body>
 
-	<section class="container">
-		<div class="p-4">
-			<button class="btn btn-primary mb-4" data-bs-toggle="modal"
-				data-bs-target="#cadastroModal">Cadastrar cliente</button>
+<section class="container">
+	<div class="p-4">
+		<button class="btn btn-primary mb-4" data-bs-toggle="modal"
+			data-bs-target="#cadastroModal">Cadastrar cliente</button>
 
-			<div class="modal fade dark" id="cadastroModal" tabindex="-1"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h1 class="modal-title fs-5" id="exampleModalLabel">
-								Cadastrar cliente</h1>
-							<button type="button" class="btn-close" data-bs-dismiss="modal"
-								aria-label="Close"></button>
+		<div class="modal fade dark" id="cadastroModal" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">
+							Cadastrar cliente</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<form class="d-flex flex-column px-5"
+						action="/Atividade-Modulo-4/cliente-save">
+						<div class="mb-3">
+							<label for="nome" class="form-label">Nome:</label> <input
+								type="text" id="nome" name="nome" class="form-control" required>
 						</div>
-						<form class="d-flex flex-column px-5"
-							action="/Atividade-Modulo-4/cliente-save">
-							<div class="mb-3">
-								<label for="nome" class="form-label">Nome:</label> <input
-									type="text" id="nome" name="nome" class="form-control" required>
-							</div>
-							<div class="mb-3">
-								<label for="data" class="form-label">Data de nascimento:</label>
-								<input type="date" id="data" name="data" class="form-control"
-									required>
-							</div>
-							<div class="mb-3">
-								<label for="telefone" class="form-label">Telefone:</label> <input
-									type="text" id="telefone" name="telefone" class="form-control"
-									required>
-							</div>
-							<div class="mb-3">
-								<label for="numPassaporte" class="form-label">Número do
-									passaporte:</label> <input type="text" id="numPassaporte"
-									name="numPassaporte" class="form-control" required>
-							</div>
+						<div class="mb-3">
+							<label for="data" class="form-label">Data de nascimento:</label>
+							<input type="date" id="data" name="data" class="form-control"
+								required>
+						</div>
+						<div class="mb-3">
+							<label for="telefone" class="form-label">Telefone:</label> <input
+								type="text" id="telefone" name="telefone" class="form-control"
+								required>
+						</div>
+						<div class="mb-3">
+							<label for="numPassaporte" class="form-label">Número do
+								passaporte:</label> <input type="text" id="numPassaporte"
+								name="numPassaporte" class="form-control" required>
+						</div>
 						<div class="d-flex gap-2 justify-content-end mb-3">
-							<button type="button" class="btn btn-danger"
+							<button type="button" class="btn btn-secondary"
 								data-bs-dismiss="modal">Cancelar</button>
 							<button class="btn btn-primary">Cadastrar</button>
 						</div>
-						</form>
-					</div>
+					</form>
 				</div>
 			</div>
-
-
-			<table
-				class="table table-responsive table-hover table-primary table-striped">
-				<thead class="table-dark">
-					<tr>
-						<th scope="col">ID</th>
-						<th scope="col">Nome</th>
-						<th scope="col">Telefone</th>
-						<th scope="col">Data de Nascimento</th>
-						<th scope="col">Nº do Passaporte</th>
-						<th scope="col">Ações</th>
-					</tr>
-				</thead>
-				<tbody>
-					<jstl:forEach items="${clientes}" var="cliente">
-						<tr>
-							<th>${cliente.id}</th>
-							<td>${cliente.nome}</td>
-							<td>${cliente.telefone}</td>
-							<td>${cliente.dataNasc}</td>
-							<td>${cliente.numPassaporte}</td>
-							<td>
-								<a class="btn btn-warning">Editar</a> 
-								<a class="btn btn-danger">Excluir</a>
-							</td>
-						</tr>
-					</jstl:forEach>
-				</tbody>
-			</table>
 		</div>
+
+
+		<table class="table table-responsive table-hover table-primary table-striped">
+			<thead class="table-dark">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Nome</th>
+					<th scope="col">Telefone</th>
+					<th scope="col">Data de Nascimento</th>
+					<th scope="col">Nº do Passaporte</th>
+					<th scope="col">Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				<jstl:forEach items="${clientes}" var="cliente">
+					<tr>
+						<th>${cliente.id}</th>
+						<td>${cliente.nome}</td>
+						<td>${cliente.telefone}</td>
+						<td>${cliente.dataNasc}</td>
+						<td>${cliente.numPassaporte}</td>
+						<td>
+							<a class="btn btn-warning">Editar</a> 
+							<a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Excluir</a>
+						</td>
+					</tr>
+				</jstl:forEach>
+			</tbody>
+		</table>
+	</div>
+		
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar exclusão?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Deseja excluir esse cliente?
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
+        <a href="/Atividade-Modulo-4/cliente-delete?id=${id}" class="btn btn-danger">Excluir</a>
+      </div>
+    </div>
+  </div>
+</div>
+		
 	</section>
 
 	<script

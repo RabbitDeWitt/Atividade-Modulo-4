@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ClienteDAO;
 import model.Cliente;
 
-@WebServlet(urlPatterns = {"/cliente", "/cliente-save", "cliente-delete"})
+@WebServlet(urlPatterns = {"/cliente", "/cliente-save", "/cliente-delete"})
 public class ClienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,6 +30,9 @@ public class ClienteController extends HttpServlet {
 			break;
 		case "/cliente-save":
 			save(req, resp);
+			break;
+		case "/cliente-delete":
+			delete(req, resp);
 			break;
 
 		default:

@@ -140,42 +140,6 @@ public class ClienteDAO {
 		return cliente;
 	}
 	
-	
-//	public static void atualizar(Cliente cliente) {
-//		String sql = "UPDATE cliente SET nome = ?, dataNasc = ?, telefone = ?, numPassaporte = ?" + "WHERE idCliente = ?";
-//		Connection con = null;
-//		PreparedStatement pstm = null;
-//		
-//		try {
-//			con = ConnectionFactory.createConnection();
-//			pstm = con.prepareStatement(sql);
-//			
-//			pstm.setString(1, cliente.getNome());
-//			pstm.setDate(2, new Date(cliente.getDataNasc().getTime()));
-//			pstm.setString(3, cliente.getTelefone());
-//			pstm.setString(4, cliente.getNumPassaporte());
-//			pstm.setInt(5, cliente.getId());
-//			
-//			pstm.execute();
-//			
-//			System.out.println("Registro alterado com sucesso!!!");
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			try {
-//				if(pstm != null) {
-//					pstm.close();
-//				}
-//				if(con != null) {
-//					con.close();
-//				}
-//			}catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
-	
 	public static void deleteById(int id) {
 		String sql = "DELETE FROM cliente WHERE IdCliente = ?";
 		

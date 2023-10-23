@@ -51,7 +51,7 @@ public class ContatoDAO {
 		}
 	}
 	
-	public static void listarContato(){
+	public static List<Contato> read(){
 		String sql = "SELECT * FROM Contato";
 		List<Contato> contatos = new ArrayList<>();
 		
@@ -89,12 +89,10 @@ public class ContatoDAO {
 				e.printStackTrace();
 			}
 		}
-		for(Contato contato : contatos) {
-			contato.mostrar();
-		}
+		return contatos;
 	}
 
-	public static Contato consultarContato(int id) {
+	public static Contato readById(int id) {
 		String sql = "select * from contato WHERE idContato = ?";
 	
 		Connection con = null;
@@ -135,41 +133,7 @@ public class ContatoDAO {
 		return contato;
 	}
 
-	public static void atualizar(Contato contato) {
-		String sql = "UPDATE contato SET nome = ?, email = ?, mensagem = ? WHERE idContato = ?";
-		Connection con = null;
-		PreparedStatement pstm = null;
-		
-		try {
-			con = ConnectionFactory.createConnection();
-			pstm = con.prepareStatement(sql);
-			
-			pstm.setString(1, contato.getNome());
-			pstm.setString(2, contato.getEmail());
-			pstm.setString(3, contato.getMensagem());
-			pstm.setInt(4, contato.getId());
-			
-			pstm.execute();
-			
-			System.out.println("Registro alterado com sucesso!!!");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(pstm != null) {
-					pstm.close();
-				}
-				if(con != null) {
-					con.close();
-				}
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public static void removerPorId(int id) {
+	public static void deleteById(int id) {
 		String sql = "DELETE FROM contato WHERE IdContato = ?";
 		
 		Connection con = null;
