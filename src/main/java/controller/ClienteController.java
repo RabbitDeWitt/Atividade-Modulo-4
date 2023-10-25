@@ -34,8 +34,8 @@ public class ClienteController extends HttpServlet {
 		case "/cliente-delete":
 			delete(req, resp);
 			break;
-
 		default:
+			resp.sendRedirect("/Atividade-Modulo-4/pages/home/index.html");
 			break;
 		}
 	}
@@ -50,6 +50,10 @@ public class ClienteController extends HttpServlet {
 	protected void save(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		Cliente cliente = new Cliente();
+		if(req.getParameter("id") != null) {
+			cliente.setId(Integer.parseInt(req.getParameter("id")));
+		}
+		
 		cliente.setNome(req.getParameter("nome"));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 		String data = req.getParameter("data"); 
