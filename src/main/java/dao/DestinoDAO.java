@@ -20,7 +20,7 @@ public class DestinoDAO {
 			sql = destino.getId() == 0 ?
 					"INSERT INTO destino(nome, valor, estado, pais) VALUES(?,?,?,?)"
 				:
-					"UPDATE destino SET nome = ?, estado = ?, pais = ?, valor = ? WHERE idDestino = ?"
+					"UPDATE destino SET nome = ?, valor = ?, estado = ?, pais = ? WHERE idDestino = ?"
 				;
 		
 			con = ConnectionFactory.createConnection();
