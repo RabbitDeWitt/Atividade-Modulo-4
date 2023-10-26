@@ -55,7 +55,7 @@ public class ClienteController extends HttpServlet {
 		}
 		
 		cliente.setNome(req.getParameter("nome"));
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String data = req.getParameter("data"); 
 		try {
 			cliente.setDataNasc(sdf.parse(data));
