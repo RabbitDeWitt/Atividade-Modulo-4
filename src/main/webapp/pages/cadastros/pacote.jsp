@@ -11,12 +11,19 @@
 	rel="stylesheet"
 	integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
 	crossorigin="anonymous">
-<!-- <link rel="stylesheet" href="./styles/styles.css"> -->
+<link rel="stylesheet" href="./styles/styles.css">
+<link rel="stylesheet" href="./pages/cadastros/cadastros.css">
 </head>
 <body>
 
+
 <section class="container">
+<div class="select">
+</div>
 	<div class="p-4">
+	
+	<h1>Lista de Pacotes</h1>
+	
 		<button class="btn btn-primary mb-4" data-bs-toggle="modal"
 			data-bs-target="#cadastroModal">Cadastrar pacote</button>
 
@@ -27,10 +34,13 @@
 					<div class="modal-header">
 						<h1 class="modal-title fs-5" id="exampleModalLabel">
 							Cadastrar pacote</h1>
+			<div data-bs-theme="dark">
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
+			</div>
 					</div>
-					<form class="d-flex flex-column px-5"
+					<div class="px-5">
+					<form class="d-flex flex-column"
 						action="/Atividade-Modulo-4/pacote-save">
 						<div class="mb-3">
 							<label for="nome" class="form-label">Nome:</label> <input
@@ -47,6 +57,7 @@
 							<button class="btn btn-primary">Cadastrar</button>
 						</div>
 					</form>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -80,9 +91,12 @@
 					<div class="modal-header">
 						<h1 class="modal-title fs-5" id="exampleModalLabel">
 							Atualizar pacote</h1>
+			<div data-bs-theme="dark">
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
+			</div>
 					</div>
+					<div class="px-5">
 					<form class="d-flex flex-column px-5"
 						action="/Atividade-Modulo-4/pacote-save">
 						<div class="mb-3">
@@ -103,16 +117,20 @@
 							<button class="btn btn-primary">Atualizar</button>
 						</div>
 					</form>
+					</div>
 				</div>
 			</div>
 		</div>
 		
-		<div class="modal" tabindex="-1" id="excluirModal${pacote.id}">
+		<div class="modal fade dark" tabindex="-1" id="excluirModal${pacote.id}">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Deseja excluir esse registro?</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div data-bs-theme="dark">
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+		</div>
       </div>
       <div class="modal-body">
 	        <div class="mb-3">
@@ -136,7 +154,7 @@
 	</div>
 		
 	</section>
-
+	<script src="./pages/cadastros/cadastro.js" type="module"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
