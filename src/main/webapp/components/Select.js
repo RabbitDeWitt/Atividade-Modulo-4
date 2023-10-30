@@ -1,27 +1,32 @@
 export const Select = () => {
 	const links = [
 		{
-			name: "Cliente"
+			name: "Cliente",
+			route: "Atividade-Modulo-4/pages/cadastros/cliente"
 		},
 		{
-			name: "Destino"
+			name: "Destino",
+			route: "Atividade-Modulo-4/pages/cadastros/destino"
 		},
 		{
-			name: "Pacote"
+			name: "Pacote",
+			route: "Atividade-Modulo-4/pages/cadastros/pacote"
 		},
 		{
-			name: "Reserva"
+			name: "Reserva",
+			route: "Atividade-Modulo-4/pages/cadastros/reserva"
 		},
 		{
-			name: "Contato"
+			name: "Contato",
+			route: "Atividade-Modulo-4/pages/cadastros/contato"
 		}
 	]
 
 	let options = []
 	
-	links.map(({name}) => {
+	links.map(({name, route}) => {
 		options.push(`
-		<option value="${name.toLocaleLowerCase()}">${name}</option>
+		<option value="${route}">${name}</option>
 		`)
 	})
 	

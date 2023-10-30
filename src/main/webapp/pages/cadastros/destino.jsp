@@ -14,15 +14,22 @@
 <link rel="stylesheet" href="./styles/styles.css">
 <link rel="stylesheet" href="./pages/cadastros/cadastros.css">
 </head>
-<body>
+<body class="d-flex flex-column justify-content-between min-vh-100">
 
+<!-- NAVBAR -->
 
-<section class="container">
-<div class="select">
-</div>
+  <header class="fixed-top">
+
+  </header>
+
+<!-- NAVBAR -->
+
+<main class="container">
 
 	<div class="p-4">
 	
+<div class="select">
+</div>
 		<h1>Lista de Destinos</h1>
 		
 		<button class="btn btn-primary mb-4" data-bs-toggle="modal"
@@ -181,7 +188,16 @@
 		</table>
 	</div>
 		
-	</section>
+	</main>
+	
+	  <!-- FOOTER -->
+  <footer>
+
+  </footer>
+	
+	  <!-- FOOTER -->
+
+	
 	<script src="./pages/cadastros/cadastro.js" type="module"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

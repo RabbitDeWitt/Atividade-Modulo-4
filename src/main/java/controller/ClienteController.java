@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ClienteDAO;
 import model.Cliente;
 
-@WebServlet(urlPatterns = {"/cliente", "/cliente-save", "/cliente-delete"})
+@WebServlet(urlPatterns = {"/Atividade-Modulo-4/pages/cadastros/cliente", "/cliente-save", "/cliente-delete"})
 public class ClienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class ClienteController extends HttpServlet {
 		String route = req.getServletPath();
 		
 		switch (route) {
-		case "/cliente":
+		case "/Atividade-Modulo-4/pages/cadastros/cliente":
 			read(req, resp);
 			break;
 		case "/cliente-save":
@@ -43,7 +43,7 @@ public class ClienteController extends HttpServlet {
 	protected void read(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
 		List<Cliente> clientes = ClienteDAO.read();
 		req.setAttribute("clientes", clientes);
-		RequestDispatcher rd = req.getRequestDispatcher("./pages/cadastros/cliente.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("/pages/cadastros/cliente.jsp");
 		rd.forward(req, resp);
 	}
 

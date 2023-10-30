@@ -14,13 +14,20 @@
 <link rel="stylesheet" href="./styles/styles.css">
 <link rel="stylesheet" href="./pages/cadastros/cadastros.css">
 </head>
-<body>
+<body class="d-flex flex-column justify-content-between min-vh-100">
 
+<!-- NAVBAR -->
 
-<section class="container">
+  <header class="fixed-top">
+
+  </header>
+
+<!-- NAVBAR -->
+
+<main class="container">
+	<div class="p-4">
 <div class="select">
 </div>
-	<div class="p-4">
 	
 	<h1>Lista de Pacotes</h1>
 	
@@ -153,7 +160,15 @@
 		</table>
 	</div>
 		
-	</section>
+	</main>
+	
+		  <!-- FOOTER -->
+  <footer>
+
+  </footer>
+	
+	  <!-- FOOTER -->
+	
 	<script src="./pages/cadastros/cadastro.js" type="module"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

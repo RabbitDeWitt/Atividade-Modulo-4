@@ -2,6 +2,7 @@ import { Navbar } from "../components/Navbar.js";
 import { Footer } from "../components/Footer.js";
 import { PromotionCard } from "../components/PromotionCard.js";
 import { DestinationCard } from "../components/DestinationCard.js";
+import { Select } from "../components/Select.js";
 import { FormCliente } from "./formularios/FormCliente.js";
 import { FormDestino } from "./formularios/FormDestino.js";
 import { FormPacote } from "./formularios/FormPacote.js";
@@ -12,6 +13,7 @@ export {
   Footer,
   PromotionCard,
   DestinationCard,
+  Select,
   FormCliente,
   FormDestino,
   FormPacote,
