@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ClienteDAO;
 import model.Cliente;
 
-@WebServlet(urlPatterns = {"/Atividade-Modulo-4/pages/cadastros/cliente", "/cliente-save", "/cliente-delete"})
+@WebServlet(urlPatterns = {"/pages/cadastros/cliente", "/cliente-save", "/cliente-delete"})
 public class ClienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class ClienteController extends HttpServlet {
 		String route = req.getServletPath();
 		
 		switch (route) {
-		case "/Atividade-Modulo-4/pages/cadastros/cliente":
+		case "/pages/cadastros/cliente":
 			read(req, resp);
 			break;
 		case "/cliente-save":
@@ -43,7 +43,7 @@ public class ClienteController extends HttpServlet {
 	protected void read(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
 		List<Cliente> clientes = ClienteDAO.read();
 		req.setAttribute("clientes", clientes);
-		RequestDispatcher rd = req.getRequestDispatcher("/pages/cadastros/cliente.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("./cliente.jsp");
 		rd.forward(req, resp);
 	}
 
@@ -65,13 +65,13 @@ public class ClienteController extends HttpServlet {
 		cliente.setNumPassaporte(req.getParameter("numPassaporte"));
 		
 		ClienteDAO.save(cliente);
-		resp.sendRedirect("/Atividade-Modulo-4/cliente");
+		resp.sendRedirect("/Atividade-Modulo-4/pages/cadastros/cliente");
 	}
 	
 	protected void delete(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		int id = Integer.parseInt(req.getParameter("id"));
 		ClienteDAO.deleteById(id);
-		resp.sendRedirect("/Atividade-Modulo-4/cliente");
+		resp.sendRedirect("/Atividade-Modulo-4/pages/cadastros/cliente");
 	}
 }

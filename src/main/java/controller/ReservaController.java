@@ -20,7 +20,7 @@ import model.Destino;
 import model.Pacote;
 import model.Reserva;
 
-@WebServlet(urlPatterns = {"/reserva", "/reserva-save", "/reserva-delete"})
+@WebServlet(urlPatterns = {"/pages/cadastros/reserva", "/reserva-save", "/reserva-delete"})
 public class ReservaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,7 +39,7 @@ public class ReservaController extends HttpServlet {
 		req.setAttribute("pacotes", pacotes);
 		
 		switch (route) {
-		case "/reserva":
+		case "/pages/cadastros/reserva":
 			read(req, resp);
 			break;
 		case "/reserva-save":
@@ -56,7 +56,7 @@ public class ReservaController extends HttpServlet {
 	protected void read(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
 		List<Reserva> reservas = ReservaDAO.read();
 		req.setAttribute("reservas", reservas);
-		RequestDispatcher rd = req.getRequestDispatcher("./pages/cadastros/reserva.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("./reserva.jsp");
 		rd.forward(req, resp);
 	}
 
@@ -92,7 +92,7 @@ public class ReservaController extends HttpServlet {
 		
 		ReservaDAO.save(reserva);
 		
-		resp.sendRedirect("/Atividade-Modulo-4/reserva");
+		resp.sendRedirect("/Atividade-Modulo-4/pages/cadastros/reserva");
 		
 	}
 	
@@ -100,6 +100,6 @@ public class ReservaController extends HttpServlet {
 			throws ServletException, IOException {
 		int id = Integer.parseInt(req.getParameter("id"));
 		ReservaDAO.deleteById(id);
-		resp.sendRedirect("/Atividade-Modulo-4/reserva");
+		resp.sendRedirect("/Atividade-Modulo-4/pages/cadastros/reserva");
 	}
 }

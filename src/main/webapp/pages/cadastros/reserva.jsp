@@ -11,8 +11,8 @@
 	rel="stylesheet"
 	integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="./styles/styles.css">
-<link rel="stylesheet" href="./pages/cadastros/cadastros.css">
+ <link rel="stylesheet" href="../../styles/styles.css">
+<link rel="stylesheet" href="./cadastros.css">
 </head>
 <body class="d-flex flex-column justify-content-between min-vh-100">
 <!-- NAVBAR -->
@@ -237,7 +237,7 @@
 	
 	  <!-- FOOTER -->
 	
-	<script src="./pages/cadastros/cadastro.js" type="module"></script>
+	<script src="./cadastro.js" type="module"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"

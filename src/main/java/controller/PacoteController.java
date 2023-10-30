@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.PacoteDAO;
 import model.Pacote;
 
-@WebServlet(urlPatterns = {"/pacote", "/pacote-save", "/pacote-delete"})
+@WebServlet(urlPatterns = {"/pages/cadastros/pacote", "/pacote-save", "/pacote-delete"})
 public class PacoteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -24,7 +24,7 @@ public class PacoteController extends HttpServlet {
 		String route = req.getServletPath();
 		
 		switch (route) {
-		case "/pacote":
+		case "/pages/cadastros/pacote":
 			read(req, resp);
 			break;
 		case "/pacote-save":
@@ -42,7 +42,7 @@ public class PacoteController extends HttpServlet {
 	protected void read(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
 		List<Pacote> pacotes = PacoteDAO.read();
 		req.setAttribute("pacotes", pacotes);
-		RequestDispatcher rd = req.getRequestDispatcher("./pages/cadastros/pacote.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("./pacote.jsp");
 		rd.forward(req, resp);
 	}
 
@@ -58,13 +58,13 @@ public class PacoteController extends HttpServlet {
 		pacote.setValor(Float.parseFloat(req.getParameter("valor")));
 		
 		PacoteDAO.save(pacote);
-		resp.sendRedirect("/Atividade-Modulo-4/pacote");
+		resp.sendRedirect("/Atividade-Modulo-4/pages/cadastros/pacote");
 	}
 	
 	protected void delete(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		int id = Integer.parseInt(req.getParameter("id"));
 		PacoteDAO.deleteById(id);
-		resp.sendRedirect("/Atividade-Modulo-4/pacote");
+		resp.sendRedirect("/Atividade-Modulo-4/pages/cadastros/pacote");
 	}
 }

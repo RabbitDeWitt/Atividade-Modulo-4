@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.DestinoDAO;
 import model.Destino;
 
-@WebServlet(urlPatterns = {"/destino", "/destino-save", "/destino-delete"})
+@WebServlet(urlPatterns = {"/pages/cadastros/destino", "/destino-save", "/destino-delete"})
 public class DestinoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -24,7 +24,7 @@ public class DestinoController extends HttpServlet {
 		String route = req.getServletPath();
 		
 		switch (route) {
-		case "/destino":
+		case "/pages/cadastros/destino":
 			read(req, resp);
 			break;
 		case "/destino-save":
@@ -42,7 +42,7 @@ public class DestinoController extends HttpServlet {
 	protected void read(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
 		List<Destino> destinos = DestinoDAO.read();
 		req.setAttribute("destinos", destinos);
-		RequestDispatcher rd = req.getRequestDispatcher("./pages/cadastros/destino.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("./destino.jsp");
 		rd.forward(req, resp);
 	}
 
@@ -60,13 +60,13 @@ public class DestinoController extends HttpServlet {
 		destino.setValor(Float.parseFloat(req.getParameter("valor")));
 		
 		DestinoDAO.save(destino);
-		resp.sendRedirect("/Atividade-Modulo-4/destino");
+		resp.sendRedirect("/Atividade-Modulo-4/pages/cadastros/destino");
 	}
 	
 	protected void delete(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		int id = Integer.parseInt(req.getParameter("id"));
 		DestinoDAO.deleteById(id);
-		resp.sendRedirect("/Atividade-Modulo-4/destino");
+		resp.sendRedirect("/Atividade-Modulo-4/pages/cadastros/destino");
 	}
 }

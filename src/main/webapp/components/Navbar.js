@@ -33,6 +33,9 @@ export const Navbar = () => {
             </div>
             <ul class="navbar-nav text-uppercase mx-auto mb-2 mb-lg-0">
               ${links}
+              <li class="nav-item  fs-4">
+      			  <a class="nav-link" href="../cadastros/cliente">Cadastros</a>
+      		  </li>
             </ul>
           </div>
         </div>

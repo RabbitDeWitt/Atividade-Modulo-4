@@ -1,32 +1,27 @@
 export const Select = () => {
 	const links = [
 		{
-			name: "Cliente",
-			route: "Atividade-Modulo-4/pages/cadastros/cliente"
+			name: "Cliente"
 		},
 		{
-			name: "Destino",
-			route: "Atividade-Modulo-4/pages/cadastros/destino"
+			name: "Destino"
 		},
 		{
-			name: "Pacote",
-			route: "Atividade-Modulo-4/pages/cadastros/pacote"
+			name: "Pacote"
 		},
 		{
-			name: "Reserva",
-			route: "Atividade-Modulo-4/pages/cadastros/reserva"
+			name: "Reserva"
 		},
 		{
-			name: "Contato",
-			route: "Atividade-Modulo-4/pages/cadastros/contato"
+			name: "Contato"
 		}
 	]
 
 	let options = []
 	
-	links.map(({name, route}) => {
+	links.map(({name}) => {
 		options.push(`
-		<option value="${route}">${name}</option>
+		<option value="/Atividade-Modulo-4/pages/cadastros/${name.toLowerCase()}">${name}</option>
 		`)
 	})
 	

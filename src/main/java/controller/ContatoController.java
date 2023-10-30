@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ContatoDAO;
 import model.Contato;
 
-@WebServlet(urlPatterns = {"/contato", "/contato-save", "/contato-delete"})
+@WebServlet(urlPatterns = {"/pages/cadastros/contato", "/contato-save", "/contato-delete"})
 public class ContatoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -24,7 +24,7 @@ public class ContatoController extends HttpServlet {
 		String route = req.getServletPath();
 		
 		switch (route) {
-		case "/contato":
+		case "/pages/cadastros/contato":
 			read(req, resp);
 			break;
 		case "/contato-save":
@@ -41,7 +41,7 @@ public class ContatoController extends HttpServlet {
 	protected void read(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
 		List<Contato> contatos = ContatoDAO.read();
 		req.setAttribute("contatos", contatos);
-		RequestDispatcher rd = req.getRequestDispatcher("./pages/cadastros/contato.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("./contato.jsp");
 		rd.forward(req, resp);
 	}
 
@@ -59,13 +59,13 @@ public class ContatoController extends HttpServlet {
 		
 		ContatoDAO.save(contato);
 		
-		resp.sendRedirect("/Atividade-Modulo-4/contato");
+		resp.sendRedirect("/Atividade-Modulo-4/pages/cadastros/contato");
 	}
 	
 	protected void delete(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		int id = Integer.parseInt(req.getParameter("id"));
 		ContatoDAO.deleteById(id);
-		resp.sendRedirect("/Atividade-Modulo-4/contato");
+		resp.sendRedirect("/Atividade-Modulo-4/pages/cadastros/contato");
 	}
 }
