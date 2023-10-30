@@ -1,5 +1,5 @@
 import { Footer, Navbar, Select } from "../../components/index.js";
-import { onScroll, setCurrentPage } from "../../scripts/functions.js";
+import { onScroll, verifyListPage } from "../../scripts/functions.js";
 
 const header = document.querySelector("header")
 const select = document.querySelector(".select")
@@ -13,7 +13,7 @@ footer.innerHTML = Footer()
 select.innerHTML = Select()
 const selectRoutes = document.querySelector("#routes")
 
-setCurrentPage()
+verifyListPage()
 
 selectRoutes.addEventListener("change", () => {
 	window.location = `${selectRoutes.value}`
