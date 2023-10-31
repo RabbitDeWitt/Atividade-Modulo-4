@@ -97,7 +97,8 @@
 		</div>
 
 
-		<table class="table table-responsive table-hover table-primary table-striped">
+<div class="table-responsive ">
+		<table class="table table-hover table-primary table-striped">
 			<thead class="table-dark">
 				<tr>
 					<th scope="col">ID</th>
@@ -120,7 +121,7 @@
 						<td>R$ ${reserva.valorTotal}</td>
 						<td>${reserva.dataPartida}</td>
 						<td>${reserva.dataRetorno}</td>
-						<td>
+						<td class="">
 							<a class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#atualizarModal${reserva.id}">Editar</a> 
 							<a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#excluirModal${reserva.id}">Excluir</a>
 						</td>
@@ -228,6 +229,7 @@
 				</jstl:forEach>
 			</tbody>
 		</table>
+		</div>
 	</div>
 	</main>
 		  <!-- FOOTER -->

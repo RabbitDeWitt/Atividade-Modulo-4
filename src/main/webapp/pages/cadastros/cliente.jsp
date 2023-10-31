@@ -81,7 +81,8 @@
 		</div>
 
 
-		<table class="table table-responsive table-hover table-primary table-striped">
+<div class="table-responsive ">
+		<table class="table table-hover table-primary table-striped">
 			<thead class="table-dark">
 				<tr>
 					<th scope="col">ID</th>
@@ -185,6 +186,7 @@
 				</jstl:forEach>
 			</tbody>
 		</table>
+		</div>
 	</div>
 		
 	</main>
