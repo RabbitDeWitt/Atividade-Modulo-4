@@ -28,7 +28,7 @@ export const Select = () => {
 	options = options.join(" ")
 	
 	return `
-		<select id="routes">
+		<select id="routes" class="mb-2">
 			<option selected disabled>Escolha</option>
 			${options}
 		</select>

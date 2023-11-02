@@ -47,7 +47,7 @@
 							aria-label="Close"></button>
 						</div>
 					</div>
-					<div class="px-5">
+					<div class="px-5 mt-3">
 					<form class="d-flex flex-column"
 						action="/Atividade-Modulo-4/destino-save">
 						<div class="mb-3">
@@ -102,7 +102,7 @@
 						<td>${destino.pais}</td>
 						<td>R$ ${destino.valor}</td>
 						<td>
-							<a class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#atualizarModal${destino.id}">Editar</a> 
+							<a class="btn btn-warning my-1"  data-bs-toggle="modal" data-bs-target="#atualizarModal${destino.id}">Editar</a> 
 							<a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#excluirModal${destino.id}">Excluir</a>
 						</td>
 					</tr>

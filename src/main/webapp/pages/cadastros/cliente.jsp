@@ -47,7 +47,7 @@
 							aria-label="Close"></button>
 			</div>
 					</div>
-					<div class="px-5">
+					<div class="px-5 mt-3">
 					<form class="d-flex flex-column"
 						action="/Atividade-Modulo-4/cliente-save">
 						<div class="mb-3">
@@ -102,7 +102,7 @@
 						<td>${cliente.dataNasc}</td>
 						<td>${cliente.numPassaporte}</td>
 						<td>
-							<a class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#atualizarModal${cliente.id}">Editar</a> 
+							<a class="btn btn-warning  my-1"  data-bs-toggle="modal" data-bs-target="#atualizarModal${cliente.id}">Editar</a> 
 							<a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#excluirModal${cliente.id}">Excluir</a>
 						</td>
 					</tr>
@@ -120,7 +120,7 @@
 			</div>
 					</div>
 					<div class="px-5">
-					<form class="d-flex flex-column px-5"
+					<form class="d-flex flex-column"
 						action="/Atividade-Modulo-4/cliente-save">
 						<div class="mb-3">
 							<input type="text" id="id" name="id" class="form-control" hidden value="${cliente.id }">

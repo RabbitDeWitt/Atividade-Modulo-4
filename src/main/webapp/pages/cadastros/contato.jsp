@@ -46,7 +46,7 @@
 							aria-label="Close"></button>
 			</div>
 					</div>
-					<div class="px-5">
+					<div class="px-5 mt-3">
 					<form class="d-flex flex-column"
 						action="/Atividade-Modulo-4/contato-save">
 						<div class="mb-3">
@@ -93,7 +93,7 @@
 						<td>${contato.email}</td>
 						<td>${contato.mensagem}</td>
 						<td>
-							<a class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#atualizarModal${contato.id}">Editar</a> 
+							<a class="btn btn-warning my-1"  data-bs-toggle="modal" data-bs-target="#atualizarModal${contato.id}">Editar</a> 
 							<a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#excluirModal${contato.id}">Excluir</a>
 						</td>
 					</tr>

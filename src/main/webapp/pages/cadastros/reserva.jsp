@@ -45,7 +45,7 @@
 							aria-label="Close"></button>
 			</div>
 					</div>
-					<div class="px-5">
+					<div class="px-5 mt-3">
 					<form class="d-flex flex-column"
 						action="/Atividade-Modulo-4/reserva-save">
 						<div class="mb-3">
@@ -121,8 +121,8 @@
 						<td>R$ ${reserva.valorTotal}</td>
 						<td>${reserva.dataPartida}</td>
 						<td>${reserva.dataRetorno}</td>
-						<td class="">
-							<a class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#atualizarModal${reserva.id}">Editar</a> 
+						<td>
+							<a class="btn btn-warning my-1"  data-bs-toggle="modal" data-bs-target="#atualizarModal${reserva.id}">Editar</a> 
 							<a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#excluirModal${reserva.id}">Excluir</a>
 						</td>
 					</tr>
